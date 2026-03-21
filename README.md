@@ -1,2 +1,159 @@
-# sistema-colegio-c
-Sistema de gestão de escola | projeto da matéria "Residência tecnológica 1" 
+# 🎓 Sistema de Gerenciamento de Colégio
+
+Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o objetivo de implementar um sistema de gerenciamento escolar utilizando a linguagem C.
+
+---
+
+## 📌 Funcionalidades
+
+- 📚 Cadastro de alunos  
+- 👨‍🏫 Cadastro de professores  
+- 🏫 Criação de turmas/disciplina  
+- 📝 Matrícula de alunos em turmas  
+- 📊 Lançamento de notas  
+- 📅 Controle de faltas  
+- 📋 Visualização de relatórios  
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```text
+📂 sistema-de-gerenciamento-de-colegio
+│
+├─ 📂 src            → arquivos .c (implementação)
+│   ├─ main.c        → Loop principal que chama o menu
+│   ├─ menu.c        → Lista opções e chama funções correspondentes
+│   ├─ alunos.c      → Implementa cadastro e manipulação de alunos
+│   ├─ professores.c → Implementa cadastro e manipulação de professores
+│   ├─ turmas.c      → Criação de turmas e associação de professores
+│   └─ matriculas.c  → Matrícula de alunos, lançamento de notas e faltas
+│
+├─ 📂 include        → arquivos .h (declarações)
+│   ├─ alunos.h      → Declara structs e funções de alunos
+│   ├─ professores.h → Declara structs e funções de professores
+│   ├─ turmas.h      → Declara structs e funções de turmas
+│   └─ matriculas.h  → Declara structs e funções de matrículas
+│
+├─ 📂 data           → arquivos de dados (.dat)
+│   ├─ alunos.dat
+│   ├─ professores.dat
+│   ├─ turmas.dat
+│   └─ matriculas.dat
+│
+└─ 📂 bin            → executável (opcional)
+```
+---
+<h1> ⚙️ Compilação do Sistema (Makefile) </h1>
+
+No terminal:
+
+`make` -> Compila todos os arquivos
+
+`./sistema_colegio` -> Executa o sistema
+
+`make clean` -> Limpa arquivos gerados (.o e executável)
+
+Certifique-se de que a pasta data/ está na mesma pasta do executável.
+
+---
+
+<h1> 💻 Tutorial de Configuração do Windows / Makefile </h1>
+
+Este arquivo (Makefile) serve para compilar o código de maneira mais rápida dentro de cada computador.
+
+Passo a passo:
+
+Instale o MSYS2 no Windows.
+
+Vá até a pasta C:\tools\msys64 e abra o arquivo msys2.exe.
+
+No terminal que abrir, digite: `pacman -S make`
+
+Quando aparecer para confirmar, digite Y.
+
+Pesquise no Windows: "Editar as variáveis de ambiente do sistema" e abra.
+
+Clique em Variáveis de Ambiente.
+
+<img width="1042" height="586" alt="Captura de tela 2026-03-21 114020" src="https://github.com/user-attachments/assets/5e2ebb1d-c2fb-4251-8f48-45d732c392e3" />
+
+Localize a variável Path e duplo clique.
+
+Se houver algum caminho relativo ao MinGW, exclua.
+
+Clique em Novo e adicione: `C:\tools\msys64\ucrt64\bin` e `C:\tools\msys64\usr\bin`
+
+Repita o mesmo passo no outro Path em “Variáveis de Sistema” (ou vice-versa).
+
+Se o VSCode estiver aberto, feche e abra novamente.
+
+<h3> ✅ Comandos liberados no terminal do VSCode </h3>
+
+`make` → cria a pasta obj com todos os arquivos .c compilados e gera o executável sistema_colegio.exe
+
+`make clean` → apaga a pasta obj e o executável
+
+Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
+
+<h3>🔹 Executando o programa </h3>
+
+Para recompilar e rodar: `make; .\sistema_colegio.exe`
+
+Para executar novamente (sem recompilar): `.\sistema_colegio.exe`
+
+<h3>💡 Vantagens do Makefile</h3>
+
+- Compilação rápida → programa recompila apenas os arquivos alterados
+
+- Mantém a pasta raiz limpa → arquivos temporários vão para obj/
+
+<h1> Antes de usar make </h1>
+<img width="1301" height="659" alt="Captura de tela 2026-03-21 121351" src="https://github.com/user-attachments/assets/a7a1cbad-4a98-48be-8031-3ef1b8caa16b" />
+
+<h1> Após usar make </h1>
+<img width="1304" height="664" alt="Captura de tela 2026-03-21 121624" src="https://github.com/user-attachments/assets/209bf595-4d82-4bec-ab6d-39aa765c1ee7" />
+
+---
+
+<h1> 🧠 Funcionamento do Sistema </h1>
+
+O sistema utiliza arquivos .dat para armazenar os dados permanentemente
+
+<b> Relação entre dados: </b>
+
+Um aluno pode estar em várias turmas
+
+Cada turma possui um professor
+
+Matrícula liga aluno + turma
+
+Notas e faltas são armazenadas na matrícula
+
+<b>🔗 Exemplo de Matrícula</b>
+
+```
+ID_Matricula  ID_Aluno  ID_Turma  Nota  Faltas
+2001          1001      1         8.5   2
+2002          1001      2         7.0   1
+```
+---
+<h1>👥 Equipe</h1>
+
+Valdir
+
+Henrique
+
+Celine
+
+Arthur
+
+---
+
+<h1>🚀 Observações</h1>
+
+Projeto desenvolvido para fins educacionais
+
+Código organizado por módulos para facilitar manutenção
+
+Uso de arquivos para persistência de dados
