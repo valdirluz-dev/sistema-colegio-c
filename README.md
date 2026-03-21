@@ -64,29 +64,29 @@ Este arquivo (Makefile) serve para compilar o código de maneira mais rápida de
 
 Passo a passo:
 
-Instale o MSYS2 no Windows.
+- Instale o MSYS2 no Windows.
 
-Vá até a pasta C:\tools\msys64 e abra o arquivo msys2.exe.
+- Vá até a pasta C:\tools\msys64 e abra o arquivo msys2.exe.
 
-No terminal que abrir, digite: `pacman -S make`
+- No terminal que abrir, digite: `pacman -S make`
 
-Quando aparecer para confirmar, digite Y.
+- Quando aparecer para confirmar, digite Y.
 
-Pesquise no Windows: "Editar as variáveis de ambiente do sistema" e abra.
+- Pesquise no Windows: "Editar as variáveis de ambiente do sistema" e abra.
 
-Clique em Variáveis de Ambiente.
+- Clique em Variáveis de Ambiente.
 
 <img width="1042" height="586" alt="Captura de tela 2026-03-21 114020" src="https://github.com/user-attachments/assets/5e2ebb1d-c2fb-4251-8f48-45d732c392e3" />
 
-Localize a variável Path e duplo clique.
+- Localize a variável Path e duplo clique.
 
-Se houver algum caminho relativo ao MinGW, exclua.
+- Se houver algum caminho relativo ao MinGW, exclua.
 
-Clique em Novo e adicione: `C:\tools\msys64\ucrt64\bin` e `C:\tools\msys64\usr\bin`
+- Clique em Novo e adicione: `C:\tools\msys64\ucrt64\bin` e `C:\tools\msys64\usr\bin`
 
-Repita o mesmo passo no outro Path em “Variáveis de Sistema” (ou vice-versa).
+- Repita o mesmo passo no outro Path em “Variáveis de Sistema” (ou vice-versa).
 
-Se o VSCode estiver aberto, feche e abra novamente.
+- Se o VSCode estiver aberto, feche e abra novamente.
 
 <h3> ✅ Comandos liberados no terminal do VSCode </h3>
 
@@ -122,13 +122,13 @@ O sistema utiliza arquivos .dat para armazenar os dados permanentemente
 
 <b> Relação entre dados: </b>
 
-Um aluno pode estar em várias turmas
+- Um aluno pode estar em várias turmas
 
-Cada turma possui um professor
+- Cada turma possui um professor
 
-Matrícula liga aluno + turma
+- Matrícula liga aluno + turma
 
-Notas e faltas são armazenadas na matrícula
+- Notas e faltas são armazenadas na matrícula
 
 <b>🔗 Exemplo de Matrícula</b>
 
@@ -140,13 +140,13 @@ ID_Matricula  ID_Aluno  ID_Turma  Nota  Faltas
 ---
 <h1>👥 Equipe</h1>
 
-Valdir
+- Valdir
 
-Henrique
+- Henrique
 
-Celine
+- Celine
 
-Arthur
+- Arthur
 
 ---
 
