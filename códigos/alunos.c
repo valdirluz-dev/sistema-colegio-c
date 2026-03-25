@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "alunos.h"
 
-int main() {
+int cadastroAlunos() {
     char nome[100];
     int idade;
     char cpf[20];
