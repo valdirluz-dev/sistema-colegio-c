@@ -2,6 +2,5 @@
 #define ALUNOS_H
 
 cadastroAlunos()
-listarAlunos()
 
 #endif
