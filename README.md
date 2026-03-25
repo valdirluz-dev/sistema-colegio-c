@@ -6,8 +6,10 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 
 ## 📌 Funcionalidades
 
-- 📚 Cadastro de alunos  
-- 👨‍🏫 Cadastro de professores  
+- 📚 Cadastro de alunos
+- 📚 listar alunos
+- 👨‍🏫 Cadastro de professores
+- 👨‍🏫 listar professores
 - 🏫 Criação de turmas/disciplina  
 - 📝 Matrícula de alunos em turmas  
 - 📊 Lançamento de notas  
