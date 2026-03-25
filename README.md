@@ -14,7 +14,6 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 - 📝 Matrícula de alunos em turmas  
 - 📊 Lançamento de notas  
 - 📅 Controle de faltas  
-- 📋 Visualização de relatórios  
 
 ---
 
@@ -23,7 +22,7 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 ```text
 📂 sistema-de-gerenciamento-de-colegio
 │
-├─ 📂 src            → arquivos .c (implementação)
+├─ 📂 códigos            → arquivos .c (implementação)
 │   ├─ main.c        → Loop principal que chama o menu
 │   ├─ menu.c        → Lista opções e chama funções correspondentes
 │   ├─ alunos.c      → Implementa cadastro e manipulação de alunos
@@ -37,7 +36,7 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 │   ├─ turmas.h      → Declara structs e funções de turmas
 │   └─ matriculas.h  → Declara structs e funções de matrículas
 │
-├─ 📂 data           → arquivos de dados (.dat)
+├─ 📂 arquivos           → arquivos de dados (.dat)
 │   ├─ alunos.dat
 │   ├─ professores.dat
 │   ├─ turmas.dat
