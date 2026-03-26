@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "alunos.h"
 
 #include "alunos.h"
 #include "professores.h"
