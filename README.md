@@ -22,7 +22,7 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 ```text
 📂 sistema-de-gerenciamento-de-colegio
 │
-├─ 📂 códigos            → arquivos .c (implementação)
+├─ 📂 src            → arquivos .c (implementação)
 │   ├─ main.c        → Loop principal que chama o menu
 │   ├─ menu.c        → Lista opções e chama funções correspondentes
 │   ├─ alunos.c      → Implementa cadastro e manipulação de alunos
@@ -36,7 +36,7 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 │   ├─ turmas.h      → Declara structs e funções de turmas
 │   └─ matriculas.h  → Declara structs e funções de matrículas
 │
-├─ 📂 arquivos           → arquivos de dados (.dat)
+├─ 📂 data           → arquivos de dados (.dat)
 │   ├─ alunos.dat
 │   ├─ professores.dat
 │   ├─ turmas.dat
