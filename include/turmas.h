@@ -8,7 +8,8 @@ typedef struct {
 } Turma;
 
 // Funções
-void criarTurma();
-void listarTurmas();
+void cadastrar_turma();
+void listar_turmas();
+void listar_alunos_turma();
 
 #endif

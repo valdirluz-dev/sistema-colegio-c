@@ -1,5 +1,5 @@
 # Nome do executável final
-TARGET = sistema_colegio
+TARGET = sc
 
 # Compilador e Flags
 CC = gcc

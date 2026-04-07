@@ -8,7 +8,8 @@ typedef struct {
 } Professor;
 
 // Funções
-void cadastrarProfessor();
-void listarProfessores();
+void cadastrar_professor();
+void listar_professores();
+void buscar_professor();
 
 #endif

@@ -4,11 +4,11 @@
 typedef struct {
     int id;
     char nome[100];
-    int idade;
 } Aluno;
 
 // Funções
-void cadastrarAluno();
-void listarAlunos();
+void cadastrar_aluno();
+void listar_alunos();
+void buscar_aluno();
 
 #endif
