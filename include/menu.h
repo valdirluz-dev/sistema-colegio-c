@@ -8,6 +8,8 @@
 #include "matriculas.h"
 #include <stdlib.h>
 
+void limpar_tela();
+
 void menu_professores();
 void menu_turmas();
 void menu_alunos();
