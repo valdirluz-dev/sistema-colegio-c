@@ -11,9 +11,8 @@ typedef struct {
 } Matricula;
 
 // Funções
-void matricularAluno();
-void lancarNotas();
-void registrarFaltas();
-void listarMatriculas();
+void lancar_nota();
+void lancar_falta();
+void ver_boletim();
 
 #endif
