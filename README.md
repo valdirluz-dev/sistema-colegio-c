@@ -99,7 +99,9 @@ Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computa
 
 <h3>🔹 Executando o programa </h3>
 
-Para recompilar e rodar: `make; .\sistema_colegio.exe`
+Para compilar e rodar: `gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema`
+
+Para compilar com make: `make`
 
 Para executar novamente (sem recompilar): `.\sistema_colegio.exe`
 
