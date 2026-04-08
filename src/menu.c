@@ -30,6 +30,8 @@ void menu_professores(){
         break;
     }
 
+    limpar_tela();
+
     }while (opcao!=0);
     
 
@@ -63,6 +65,7 @@ void menu_turmas(){
         break;
     }
     
+    limpar_tela();
     
     }while (opcao!=0);
 
@@ -79,8 +82,8 @@ void menu_alunos(){
     printf("(1) - Cadastrar aluno \n");
     printf("(2) - listar alunos na escola \n");
     printf("(3) - buscar aluno por cpf\n");
-    printf("(4) - lançar nota\n");
-    printf("(5) - lançar falta\n");
+    printf("(4) - lancar nota\n");
+    printf("(5) - lancar falta\n");
     printf("(6) - ver boletim\n");
 
     printf("DIGITE SUA OPCAO: ");
@@ -101,7 +104,9 @@ void menu_alunos(){
         printf("================================");    
         break;
     }
-    system("cls");
+    
+    limpar_tela();
+
     }while (opcao!=0);
 
 }
