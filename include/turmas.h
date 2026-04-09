@@ -2,9 +2,9 @@
 #define TURMAS_H
 
 typedef struct {
-    int id;
+    int id_turma;
     char nome[100];
-    int idProfessor;
+    int cpf_professor;
 } Turma;
 
 // Funções

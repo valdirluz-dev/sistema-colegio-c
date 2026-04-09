@@ -3,9 +3,9 @@
 #define MATRICULAS_H
 
 typedef struct {
-    int id;
-    int idAluno;
-    int idTurma;
+    int numero_matricula;
+    int cpf_aluno;
+    int id_turma;
     float nota;
     int faltas;
 } Matricula;

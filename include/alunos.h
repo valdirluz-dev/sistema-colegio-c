@@ -2,7 +2,7 @@
 #define ALUNOS_H
 
 typedef struct {
-    int id;
+    int cpf_aluno;
     char nome[100];
 } Aluno;
 
