@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "imports.h"
 
 /* o comando a seguir serve para limpar a tela do console
     após cada execução do menu.
@@ -32,6 +32,12 @@ int main(){
 
     limpar_tela();
 
+    if (db_open() != SQLITE_OK){
+        return 1;
+    }
+
+    db_init();
+
     int opcao;
 
     do{
@@ -60,6 +66,8 @@ int main(){
     }
 }while (opcao != 0);
 
-printf("Sistema encerrado");
+db_close();
+
+printf("Sistema encerrado\n");
 return 0;
 }

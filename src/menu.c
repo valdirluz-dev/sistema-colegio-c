@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "imports.h"
 
 int opcao;
 
@@ -104,8 +104,6 @@ void menu_alunos(){
         printf("================================");    
         break;
     }
-    
-    limpar_tela();
 
     }while (opcao!=0);
 

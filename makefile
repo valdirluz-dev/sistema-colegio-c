@@ -20,7 +20,7 @@ all: $(TARGET)
 
 # Linkagem do executável final
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -lsqlite3
 
 # Compilação de cada arquivo .c para .o
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)

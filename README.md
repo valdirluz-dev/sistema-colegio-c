@@ -8,12 +8,17 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 
 - 📚 Cadastro de alunos
 - 📚 listar alunos
+- 📚 buscar alunos por cpf
 - 👨‍🏫 Cadastro de professores
 - 👨‍🏫 listar professores
+- 👨‍🏫 buscar professores por cpf
 - 🏫 Criação de turmas/disciplina  
+- 🏫 listagem de turmas/disciplinas  
+- 🏫 listagem de alunos matrículados numa turma/disciplina específica  
 - 📝 Matrícula de alunos em turmas  
 - 📊 Lançamento de notas  
 - 📅 Controle de faltas  
+- 📊 Geração de boletim com notas e faltas 
 
 ---
 
@@ -23,26 +28,23 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 📂 sistema-de-gerenciamento-de-colegio
 │
 ├─ 📂 src            → arquivos .c (implementação)
-│   ├─ main.c        → Loop principal que chama o menu
+│   ├─ main.c        → Loop que chama o menu principal
 │   ├─ menu.c        → Lista opções e chama funções correspondentes
+|   └─ database.c    → Funções relacionadas ao banco de dados
 │   ├─ alunos.c      → Implementa cadastro e manipulação de alunos
 │   ├─ professores.c → Implementa cadastro e manipulação de professores
 │   ├─ turmas.c      → Criação de turmas e associação de professores
 │   └─ matriculas.c  → Matrícula de alunos, lançamento de notas e faltas
 │
 ├─ 📂 include        → arquivos .h (declarações)
-│   ├─ alunos.h      → Declara structs e funções de alunos
-│   ├─ professores.h → Declara structs e funções de professores
-│   ├─ turmas.h      → Declara structs e funções de turmas
-│   └─ matriculas.h  → Declara structs e funções de matrículas
+│   ├─ alunos.h      → Declara funções de alunos
+│   ├─ professores.h → Declara funções de professores
+│   ├─ turmas.h      → Declara funções de turmas
+│   └─ matriculas.h  → Declara funções de matrículas
+│   └─ database.h  → Declara funções do database.c
 │
-├─ 📂 data           → arquivos de dados (.dat)
-│   ├─ alunos.dat
-│   ├─ professores.dat
-│   ├─ turmas.dat
-│   └─ matriculas.dat
-│
-└─ 📂 bin            → executável (opcional)
+├─ 📂 database    → arquivo com o banco de dados
+│   └─ escola.db  → contém as tabelas alunos, professores, turmas e matrículas.
 ```
 ---
 <h1> ⚙️ Compilação do Sistema (Makefile) </h1>
@@ -53,9 +55,7 @@ No terminal:
 
 `./sistema_colegio` -> Executa o sistema
 
-`make clean` -> Limpa arquivos gerados (.o e executável)
-
-Certifique-se de que a pasta data/ está na mesma pasta do executável.
+`make clean` -> Limpa arquivos gerados pelo make (.o e executável)
 
 ---
 
@@ -99,7 +99,7 @@ Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computa
 
 <h3>🔹 Executando o programa </h3>
 
-Para compilar e rodar: `gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema`
+Para compilar e rodar: `gcc -Wall -Wextra -g -Iinclude -o sistema obj/*.o -lsqlite3`
 
 Para compilar com make: `make`
 
@@ -121,7 +121,7 @@ Para executar novamente (sem recompilar): `.\sistema_colegio.exe`
 
 <h1> 🧠 Funcionamento do Sistema </h1>
 
-O sistema utiliza arquivos .dat para armazenar os dados permanentemente
+O sistema utiliza o arquivo escola.db para armazenar os dados permanentemente em várias tabelas
 
 <b> Relação entre dados: </b>
 
@@ -136,7 +136,7 @@ O sistema utiliza arquivos .dat para armazenar os dados permanentemente
 <b>🔗 Exemplo de Matrícula</b>
 
 ```
-ID_Matricula  ID_Aluno  ID_Turma  Nota  Faltas
+ID_Matricula  CPF_Aluno ID_Turma  Nota  Faltas
 2001          1001      1         8.5   2
 2002          1001      2         7.0   1
 ```
