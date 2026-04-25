@@ -59,6 +59,48 @@ No terminal:
 
 ---
 
+<h1> 🧠 Funcionamento do Sistema </h1>
+
+O sistema utiliza o arquivo escola.db para armazenar os dados permanentemente em várias tabelas
+
+<b> Relação entre dados: </b>
+
+- Um aluno pode estar em várias turmas
+
+- Cada turma possui um professor
+
+- Matrícula liga aluno + turma
+
+- Notas e faltas são armazenadas na matrícula
+
+<b>🔗 Exemplo de Matrícula</b>
+
+```
+ID_Matricula  CPF_Aluno ID_Turma  Nota  Faltas
+2001          1001      1         8.5   2
+2002          1001      2         7.0   1
+```
+---
+<h1>👥 Equipe</h1>
+
+- Valdir
+
+- Henrique
+
+- Celine
+
+- Arthur
+
+---
+
+<h1>🚀 Observações</h1>
+
+Projeto desenvolvido para fins educacionais
+
+Código organizado por módulos para facilitar manutenção
+
+Uso de arquivos para persistência de dados
+
 <h1> 💻 Tutorial de Configuração do Windows / Makefile </h1>
 
 Este arquivo (Makefile) serve para compilar o código de maneira mais rápida dentro de cada computador.
@@ -118,45 +160,3 @@ Para executar novamente (sem recompilar): `.\sistema_colegio.exe`
 <img width="1304" height="664" alt="Captura de tela 2026-03-21 121624" src="https://github.com/user-attachments/assets/209bf595-4d82-4bec-ab6d-39aa765c1ee7" />
 
 ---
-
-<h1> 🧠 Funcionamento do Sistema </h1>
-
-O sistema utiliza o arquivo escola.db para armazenar os dados permanentemente em várias tabelas
-
-<b> Relação entre dados: </b>
-
-- Um aluno pode estar em várias turmas
-
-- Cada turma possui um professor
-
-- Matrícula liga aluno + turma
-
-- Notas e faltas são armazenadas na matrícula
-
-<b>🔗 Exemplo de Matrícula</b>
-
-```
-ID_Matricula  CPF_Aluno ID_Turma  Nota  Faltas
-2001          1001      1         8.5   2
-2002          1001      2         7.0   1
-```
----
-<h1>👥 Equipe</h1>
-
-- Valdir
-
-- Henrique
-
-- Celine
-
-- Arthur
-
----
-
-<h1>🚀 Observações</h1>
-
-Projeto desenvolvido para fins educacionais
-
-Código organizado por módulos para facilitar manutenção
-
-Uso de arquivos para persistência de dados
