@@ -47,7 +47,7 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 │   └─ escola.db  → contém as tabelas alunos, professores, turmas e matrículas.
 ```
 ---
-<h1> ⚙️ Compilação do Sistema (Makefile) </h1>
+<h1> ⚙️ Compilação e execução do Sistema (Makefile) </h1>
 
 No terminal:
 
@@ -56,6 +56,26 @@ No terminal:
 `./sistema_colegio` -> Executa o sistema
 
 `make clean` -> Limpa arquivos gerados pelo make (.o e executável)
+
+Para compilar e rodar manualmente: `gcc -Wall -Wextra -g -Iinclude -o sistema obj/*.o -lsqlite3`
+
+Para executar novamente (sem recompilar): `.\sistema`
+
+Obs: Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
+
+---
+
+<h3>💡 Vantagens do Makefile</h3>
+
+- Compilação rápida → programa recompila apenas os arquivos alterados
+
+- Mantém a pasta raiz limpa → arquivos temporários vão para obj/
+
+<h1> Antes de usar make </h1>
+<img width="1301" height="659" alt="Captura de tela 2026-03-21 121351" src="https://github.com/user-attachments/assets/a7a1cbad-4a98-48be-8031-3ef1b8caa16b" />
+
+<h1> Após usar make </h1>
+<img width="1304" height="664" alt="Captura de tela 2026-03-21 121624" src="https://github.com/user-attachments/assets/209bf595-4d82-4bec-ab6d-39aa765c1ee7" />
 
 ---
 
@@ -131,32 +151,3 @@ Passo a passo:
 
 - Se o VSCode estiver aberto, feche e abra novamente.
 
-<h3> ✅ Comandos liberados no terminal do VSCode </h3>
-
-`make` → cria a pasta obj com todos os arquivos .c compilados e gera o executável sistema_colegio.exe
-
-`make clean` → apaga a pasta obj e o executável
-
-Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
-
-<h3>🔹 Executando o programa </h3>
-
-Para compilar e rodar: `gcc -Wall -Wextra -g -Iinclude -o sistema obj/*.o -lsqlite3`
-
-Para compilar com make: `make`
-
-Para executar novamente (sem recompilar): `.\sistema_colegio.exe`
-
-<h3>💡 Vantagens do Makefile</h3>
-
-- Compilação rápida → programa recompila apenas os arquivos alterados
-
-- Mantém a pasta raiz limpa → arquivos temporários vão para obj/
-
-<h1> Antes de usar make </h1>
-<img width="1301" height="659" alt="Captura de tela 2026-03-21 121351" src="https://github.com/user-attachments/assets/a7a1cbad-4a98-48be-8031-3ef1b8caa16b" />
-
-<h1> Após usar make </h1>
-<img width="1304" height="664" alt="Captura de tela 2026-03-21 121624" src="https://github.com/user-attachments/assets/209bf595-4d82-4bec-ab6d-39aa765c1ee7" />
-
----
