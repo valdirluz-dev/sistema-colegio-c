@@ -53,13 +53,15 @@ No terminal:
 
 `make` -> Compila todos os arquivos
 
-`./sistema_colegio` -> Executa o sistema
+`./sistema` -> Executa o sistema 
 
 `make clean` -> Limpa arquivos gerados pelo make (.o e executável)
 
-Para compilar e rodar manualmente: `gcc -Wall -Wextra -g -Iinclude -o sistema obj/*.o -lsqlite3`
+`make cleanall` -> limpa os arquivos e o banco de dados
 
-Para executar novamente (sem recompilar): `.\sistema`
+Para compilar e rodar manualmente(linux/mac): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema -lsqlite3 && ./sistema`
+
+Para compilar e rodar manualmente(Windows): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src\*.c -o sistema -lsqlite3 && .\sistema`
 
 Obs: Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
 
