@@ -38,4 +38,6 @@ void db_close(){
 //criar tabelas dentro do banco de dados escola.db
 void db_init(){
 
+    sqlite3_exec(db,"CREATE TABLE IF NOT EXISTS alunos (cpf TEXT UNIQUE PRIMARY KEY, nome TEXT);",0,0,0);
+
 }
