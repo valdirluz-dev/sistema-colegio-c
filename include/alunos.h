@@ -4,6 +4,7 @@
 // Funções
 void cadastrar_aluno();
 void listar_alunos();
-void buscar_aluno();
+void buscar_cpf_aluno();
+void buscar_nome_aluno();
 
 #endif
