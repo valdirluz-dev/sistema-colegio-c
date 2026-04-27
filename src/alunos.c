@@ -17,14 +17,6 @@ sqlite3_exec(db,sql,0,0,0);
 
 }
 
-int callback(void *data, int argc, char **argv, char **colName) {
-    for (int i = 0; i < argc; i++) {
-        printf("%s = %s\n", colName[i], argv[i] ? argv[i] : "NULL");
-    }
-    printf("\n");
-    return 0;
-}
-
 void listar_alunos(){
 
 sqlite3_exec(db, "SELECT * FROM alunos;", callback, 0, 0);

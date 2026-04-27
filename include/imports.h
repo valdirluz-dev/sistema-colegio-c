@@ -13,5 +13,7 @@
 //função de limpar a tela
 #include <stdlib.h>
 void limpar_tela();
+//Callback
+int callback(void *data, int argc, char **argv, char **colName);
 
 #endif

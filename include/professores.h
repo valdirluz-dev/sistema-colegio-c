@@ -4,6 +4,7 @@
 // Funções
 void cadastrar_professor();
 void listar_professores();
-void buscar_professor();
+void buscar_cpf_professores();
+void buscar_nome_professores();
 
 #endif

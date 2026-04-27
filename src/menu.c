@@ -12,7 +12,8 @@ void menu_professores(){
     printf("(0) - Voltar ao menu anterior \n");
     printf("(1) - Cadastrar professor \n");
     printf("(2) - listar professores \n");
-    printf("(3) - buscar professores \n");
+    printf("(3) - buscar professores por cpf \n");
+    printf("(4) - buscar professores por nome \n");
 
     printf("DIGITE SUA OPCAO: ");
     scanf("%d", &opcao);
@@ -21,7 +22,8 @@ void menu_professores(){
     case 0: break;
     case 1: cadastrar_professor(); break;
     case 2: listar_professores(); break;
-    case 3: buscar_professor(); break;
+    case 3: buscar_cpf_professores(); break;
+    case 4: buscar_nome_professores(); break;
     
     default:
         printf("================================\n");
@@ -30,7 +32,6 @@ void menu_professores(){
         break;
     }
 
-    limpar_tela();
 
     }while (opcao!=0);
     
