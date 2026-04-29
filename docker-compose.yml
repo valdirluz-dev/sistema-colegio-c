@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  sistema-escola:
+    build: .
+    container_name: sistema_residência
+    # O volume garante que o arquivo escola.db fique salvo na sua máquina real
+    volumes:
+      - ./database:/app/database
+    # Permite a interação com o menu (scanf)
+    stdin_open: true
+    tty: true
