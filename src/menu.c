@@ -66,6 +66,9 @@ void menu_turmas(){
         break;
     }
     
+    printf("\nPressione ENTER para continuar...");
+    getchar();
+    getchar();
     limpar_tela();
     
     }while (opcao!=0);
