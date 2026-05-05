@@ -3,15 +3,15 @@
 void cadastrar_turma(){
 
     char codigo[20];
-    char nome[100];
+    char disciplina[100];
     char sql[200];
 
     printf("Digite o codigo da turma: ");
     scanf("%19s", codigo);
-    printf("Digite o nome da turma: ");
-    scanf(" %99[^\n]", nome);
+    printf("Digite a disciplina da turma: ");
+    scanf(" %99[^\n]", disciplina);
 
-    sprintf(sql, "INSERT INTO turmas (codigo, nome) VALUES ('%s','%s');", codigo, nome);
+    sprintf(sql, "INSERT INTO turmas (codigo, disciplina) VALUES ('%s','%s');", codigo, disciplina);
 
     sqlite3_exec(db, sql, 0, 0, 0);
 

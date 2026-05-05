@@ -87,9 +87,11 @@ void menu_alunos(){
     printf("(2) - listar alunos na escola \n");
     printf("(3) - buscar aluno por cpf\n");
     printf("(4) - buscar aluno por nome\n");
-    printf("(5) - lancar nota\n");
-    printf("(6) - lancar falta\n");
-    printf("(7) - ver boletim\n");
+    printf("(5) - realizar matrícula\n");
+    printf("(6) - lancar nota\n");
+    printf("(7) - lancar falta\n");
+    printf("(8) - ver boletim\n");
+    
 
     printf("DIGITE SUA OPCAO: ");
     scanf("%d", &opcao);
@@ -100,9 +102,13 @@ void menu_alunos(){
     case 2: listar_alunos(); break;
     case 3: buscar_cpf_aluno(); break;
     case 4: buscar_nome_aluno(); break;
-    case 5: lancar_nota(); break;
-    case 6: lancar_falta(); break;
-    case 7: ver_boletim(); break;
+    case 5: realizar_matricula(); break;
+    case 6: lancar_nota(); break;
+    case 7: lancar_falta(); break;
+    case 8: ver_boletim(); break;
+    
+   
+    
     
     default:
         printf("================================");

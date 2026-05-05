@@ -6,5 +6,6 @@
 void lancar_nota();
 void lancar_falta();
 void ver_boletim();
+void realizar_matricula();
 
 #endif

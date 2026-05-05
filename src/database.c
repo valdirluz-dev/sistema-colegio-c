@@ -35,12 +35,23 @@ void db_close(){
 
 }
 
+
 //criar tabelas dentro do banco de dados escola.db
 void db_init(){
 
     sqlite3_exec(db,"CREATE TABLE IF NOT EXISTS alunos (cpf TEXT UNIQUE PRIMARY KEY, nome TEXT);",0,0,0);
     sqlite3_exec(db,"CREATE TABLE IF NOT EXISTS professores (cpf TEXT UNIQUE PRIMARY KEY, nome TEXT, materia TEXT);",0,0,0);
-    sqlite3_exec(db,"CREATE TABLE IF NOT EXISTS turmas (codigo TEXT UNIQUE PRIMARY KEY, nome TEXT);",0,0,0);
+    sqlite3_exec(db,"CREATE TABLE IF NOT EXISTS turmas (codigo TEXT UNIQUE PRIMARY KEY, disciplina TEXT);",0,0,0);
+
+    sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS matriculas ("
+                     "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                     "cpf_aluno TEXT, "
+                     "codigo_turma TEXT, "
+                     "nota REAL DEFAULT 0.0, "
+                     "faltas INTEGER DEFAULT 0, "
+                     "FOREIGN KEY(cpf_aluno) REFERENCES alunos(cpf), "
+                     "FOREIGN KEY(codigo_turma) REFERENCES turmas(codigo));", 0,0,0);
+
 }
 
 int callback(void *data, int argc, char **argv, char **colName) {
