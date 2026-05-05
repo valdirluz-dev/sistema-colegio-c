@@ -1,35 +1,26 @@
 #include "imports.h"
 
-/* o comando a seguir serve para limpar a tela do console
-    após cada execução do menu.
+
+void limpar_tela(){system("clear");}
+
+
+void trata_sigint(int sig) {
+    (void)sig; // Silencia aviso de parâmetro não usado
+    printf("\n[!] Encerrando programa com segurança...\n");
     
-    Pelo comando ser diferente nos sistemas operacionais o programa
-    verifica o sistema operacional antes de executar o comando 
-    que limpa a tela lá no terminal.
-
-    se for Windows: executa "cls" 
-    se for linux ou aple: executa "clean" 
-    se não for nenhum dos 3: não limpa a tela e manda uma mensagem
-
-    a partir de agora sempre que quisermos limpar 
-    o console chamaremos a função "limpartela()"
+    if (db) {
+        sqlite3_close(db);
+        printf("[*] Banco de dados fechado com sucesso.\n");
+    }
     
-    */
-
-void limpar_tela(){
-    #if defined(_WIN32) || defined(_WIN64)
-        system("cls");
-    #elif defined(__linux__) || defined(__APPLE__)
-        system("clear");
-    #else
-        printf("Sistema não suportado\n");
-    #endif
+    exit(0); // Sai do programa
 }
 
 //nosso programa começa de fato a partir dessa linha
 
 int main(){
 
+    signal(SIGINT, trata_sigint);
     limpar_tela();
 
     if (db_open() != SQLITE_OK){
@@ -37,10 +28,13 @@ int main(){
     }
 
     db_init();
+    system("sleep 2");
 
     int opcao;
 
     do{
+
+    limpar_tela();
     printf("============================== \n");
     printf("SISTEMA DE CONTROLE DE COLEGIO \n");
     printf("============================== \n");

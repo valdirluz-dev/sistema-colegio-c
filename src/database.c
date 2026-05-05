@@ -54,11 +54,3 @@ void db_init(){
 
 }
 
-int callback(void *data, int argc, char **argv, char **colName) {
-    for (int i = 0; i < argc; i++) {
-        printf("%s = %s\n", colName[i], argv[i] ? argv[i] : "NULL");
-    }
-    printf("\n");
-    return 0;
-    
-}

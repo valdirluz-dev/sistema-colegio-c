@@ -19,7 +19,11 @@ sqlite3_exec(db,sql,0,0,0);
 
 void listar_alunos(){
 
-sqlite3_exec(db, "SELECT * FROM alunos;", callback, 0, 0);
+    printf("\n------------- Lista de Alunos ------------------\n");
+    printf("%-15s | %-30s\n", "CPF", "Nome do Aluno");
+    printf("--------------------------------------------------\n");
+
+    sqlite3_exec(db, "SELECT * FROM alunos;", callback_alunos, 0, 0);
 
 }
 
@@ -33,7 +37,7 @@ void buscar_cpf_aluno(){
 
     sprintf(sql, "SELECT * FROM alunos WHERE cpf = '%s';", cpf);
 
-    sqlite3_exec(db, sql, callback, 0, 0);
+    sqlite3_exec(db, sql, callback_alunos, 0, 0);
 }
 
 void buscar_nome_aluno(){
@@ -46,6 +50,6 @@ void buscar_nome_aluno(){
 
     sprintf(sql, "SELECT * FROM alunos WHERE nome LIKE '%%%s%%';", nome);
 
-    sqlite3_exec(db, sql, callback, 0, 0);
+    sqlite3_exec(db, sql, callback_alunos, 0, 0);
 
 }

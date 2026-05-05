@@ -72,7 +72,7 @@ void ver_boletim() {
     "JOIN turmas ON matriculas.codigo_turma = turmas.codigo "
     "WHERE matriculas.cpf_aluno = '%s';", cpf);
 
-    printf("\nDisciplinas | Nota | Faltas\n");
-    printf("----------------------------\n");
-    sqlite3_exec(db, sql, callback, 0, 0);
+    printf("\n%-20s | %-6s | %-6s\n", "Disciplina", "Nota", "Faltas");
+    printf("--------------------------------------------\n");
+    sqlite3_exec(db, sql, callback_boletim, 0, 0);
 }
