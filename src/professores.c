@@ -22,9 +22,13 @@ sqlite3_exec(db,sql,0,0,0);
 
 void listar_professores(){
 
+    printf("\n------------------ Lista de Professores ------------------------\n");
+    printf("%-15s | %-25s | %-20s\n", "CPF", "Nome", "Materia");
+    printf("------------------------------------------------------------------\n");
+
     char *errMsg = 0;
 
-    if (sqlite3_exec(db, "SELECT * FROM professores;", callback, 0, &errMsg) != SQLITE_OK) {
+    if (sqlite3_exec(db, "SELECT * FROM professores;", callback_professores, 0, &errMsg) != SQLITE_OK) {
         printf("Erro: %s\n", errMsg);
         sqlite3_free(errMsg);
     }
@@ -40,7 +44,7 @@ void buscar_cpf_professores(){
 
     sprintf(sql, "SELECT * FROM professores WHERE cpf = '%s';", cpf);
 
-    sqlite3_exec(db, sql, callback, 0, 0);
+    sqlite3_exec(db, sql, callback_turmas, 0, 0);
     
 }
 
@@ -54,6 +58,6 @@ void buscar_nome_professores(){
 
     sprintf(sql, "SELECT * FROM professores WHERE nome LIKE '%%%s%%';", nome);
 
-    sqlite3_exec(db, sql, callback, 0, 0);
+    sqlite3_exec(db, sql, callback_professores, 0, 0);
     
 }
