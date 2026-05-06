@@ -11,6 +11,7 @@
 #include "matriculas.h"
 #include "menu.h"
 
+#include <unistd.h> //para o sleep() funcionar
 //função de limpar a tela
 #include <stdlib.h>
 

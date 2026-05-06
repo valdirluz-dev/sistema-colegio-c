@@ -19,16 +19,29 @@ void trata_sigint(int sig) {
 //nosso programa começa de fato a partir dessa linha
 
 int main(){
+// 1. DESATIVA O BUFFER (Vital para Docker/TTYD)
+    setvbuf(stdout, NULL, _IONBF, 0);
+
+    printf("\033[2J\033[H");
+    printf("SISTEMA ONLINE\n");
+    fflush(stdout);
 
     signal(SIGINT, trata_sigint);
-    limpar_tela();
+    signal(SIGTERM, trata_sigint);
+    
+    // 2. EVITE limpar a tela no primeiro milissegundo
+    // limpar_tela(); <-- Comente isso por enquanto
 
     if (db_open() != SQLITE_OK){
+        fprintf(stderr, "Erro ao abrir banco de dados\n");
         return 1;
     }
 
     db_init();
-    system("sleep 2");
+    
+    // 3. MENSAGEM DE BOAS-VINDAS IMEDIATA
+    printf("Conectado ao servidor...\n");
+    sleep(1); // Pequena pausa para o WebSocket estabilizar
 
     int opcao;
 
