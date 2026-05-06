@@ -47,9 +47,23 @@ Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o ob
 │   └─ escola.db  → contém as tabelas alunos, professores, turmas e matrículas.
 ```
 ---
-<h1> ⚙️ Compilação e execução do Sistema (Makefile) </h1>
+<h1> ⚙️ Compilação e execução do Sistema </h1>
 
-No terminal:
+<h3> Para uso: </h3>
+
+Para compilar e executar o programa usando Docker: `docker-compose up --build` 
+
+Para compilar e rodar manualmente(linux/mac): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema -lsqlite3 && ./sistema`
+
+Para compilar e rodar manualmente(Windows): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src\*.c -o sistema -lsqlite3 && .\sistema`
+
+<h3>Para desenvolvimento:</h3>
+
+`docker-compose up -d` -> rodar o container
+
+`docker exec -it sistema_residência bash` -> abrir o terminal interno do container
+
+<b>Dentro do terminal do container:</b>
 
 `make` -> Compila todos os arquivos
 
@@ -58,10 +72,6 @@ No terminal:
 `make clean` -> Limpa arquivos gerados pelo make (.o e executável)
 
 `make cleanall` -> limpa os arquivos e o banco de dados
-
-Para compilar e rodar manualmente(linux/mac): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema -lsqlite3 && ./sistema`
-
-Para compilar e rodar manualmente(Windows): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src\*.c -o sistema -lsqlite3 && .\sistema`
 
 Obs: Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
 
@@ -109,7 +119,7 @@ ID_Matricula  CPF_Aluno ID_Turma  Nota  Faltas
 
 - Henrique
 
-- Celine
+- Celina
 
 - Arthur
 
@@ -122,34 +132,3 @@ Projeto desenvolvido para fins educacionais
 Código organizado por módulos para facilitar manutenção
 
 Uso de arquivos para persistência de dados
-
-<h1> 💻 Tutorial de Configuração do Windows / Makefile </h1>
-
-Este arquivo (Makefile) serve para compilar o código de maneira mais rápida dentro de cada computador.
-
-Passo a passo:
-
-- Instale o MSYS2 no Windows.
-
-- Vá até a pasta C:\tools\msys64 e abra o arquivo msys2.exe.
-
-- No terminal que abrir, digite: `pacman -S make`
-
-- Quando aparecer para confirmar, digite Y.
-
-- Pesquise no Windows: "Editar as variáveis de ambiente do sistema" e abra.
-
-- Clique em Variáveis de Ambiente.
-
-<img width="1042" height="586" alt="Captura de tela 2026-03-21 114020" src="https://github.com/user-attachments/assets/5e2ebb1d-c2fb-4251-8f48-45d732c392e3" />
-
-- Localize a variável Path e duplo clique.
-
-- Se houver algum caminho relativo ao MinGW, exclua.
-
-- Clique em Novo e adicione: `C:\tools\msys64\ucrt64\bin` e `C:\tools\msys64\usr\bin`
-
-- Repita o mesmo passo no outro Path em “Variáveis de Sistema” (ou vice-versa).
-
-- Se o VSCode estiver aberto, feche e abra novamente.
-
