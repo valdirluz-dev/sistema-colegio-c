@@ -1,50 +1,38 @@
 #include "imports.h"
 
-
-void limpar_tela(){system("clear");}
-
-
-void trata_sigint(int sig) {
-    (void)sig; // Silencia aviso de parâmetro não usado
-    printf("\n[!] Encerrando programa com segurança...\n");
-    
-    if (db) {
-        sqlite3_close(db);
-        printf("[*] Banco de dados fechado com sucesso.\n");
-    }
-    
-    exit(0); // Sai do programa
-}
-
-//nosso programa começa de fato a partir dessa linha
-
 int main(){
-// 1. DESATIVA O BUFFER (Vital para Docker/TTYD)
-    setvbuf(stdout, NULL, _IONBF, 0);
 
+    /* --- CONFIGURAÇÃO DE FLUXO ---
+    Remove o "atraso" de escrita. Sem isso, o texto demoraria a aparecer no navegador.*/
+    setvbuf(stdout, NULL, _IONBF, 0); 
+
+    /* --- COMANDO ANSI ---
+     \033[2J limpa a tela | \033[H move o cursor para o início. 
+     É mais rápido e "limpo" que o system("clear") para terminais web.*/
     printf("\033[2J\033[H");
     printf("SISTEMA ONLINE\n");
-    fflush(stdout);
+    fflush(stdout); // Força o envio do texto acima para o terminal imediatamente
 
-    signal(SIGINT, trata_sigint);
-    signal(SIGTERM, trata_sigint);
-    
-    // 2. EVITE limpar a tela no primeiro milissegundo
-    // limpar_tela(); <-- Comente isso por enquanto
+    /* --- ESCUTAS DE SINAL ---
+    Caso o usuário encerre o programa abruptamente esses comandos fecham o banco de dados*/
+    signal(SIGINT, trata_sigint); // 
+    signal(SIGTERM, trata_sigint); //
 
+    // --- BANCO DE DADOS ---
     if (db_open() != SQLITE_OK){
         fprintf(stderr, "Erro ao abrir banco de dados\n");
-        return 1;
+        return 1; //Fecha o programa com erro se o banco de dados não abrir
     }
 
-    db_init();
+    db_init(); // cria as tabelas no banco de dados
     
     // 3. MENSAGEM DE BOAS-VINDAS IMEDIATA
     printf("Conectado ao servidor...\n");
-    sleep(1); // Pequena pausa para o WebSocket estabilizar
+    sleep(1); // Pausa de 1s: dá tempo do navegador carregar o CSS antes do menu aparecer
 
     int opcao;
 
+    // --- LOOP DO MENU ---
     do{
 
     limpar_tela();
@@ -73,7 +61,7 @@ int main(){
     }
 }while (opcao != 0);
 
-db_close();
+db_close(); //fecha o banco de dados quando o programa encerra
 
 printf("Sistema encerrado\n");
 return 0;

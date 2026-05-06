@@ -1,5 +1,23 @@
 #include "imports.h"
 
+//função para limpar o terminal
+void limpar_tela(){system("clear");}
+
+
+//essa função serve para encerrar o programa com segurança (fechando o banco de dados)
+void trata_sigint(int sig) {
+    (void)sig; // Silencia aviso de parâmetro não usado
+    printf("\n[!] Encerrando programa com segurança...\n");
+    
+    if (db) {
+        sqlite3_close(db);
+        printf("[*] Banco de dados fechado com sucesso.\n");
+    }
+    
+    exit(0); // Sai do programa
+}
+
+
 int callback_alunos(void *data, int argc, char **argv, char **colName) {
     
     // Silencia avisos de parâmetros não usados

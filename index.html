@@ -37,17 +37,15 @@
     width: 100%;
     height: 100%;
     background: #000;
-    padding: 5px; 
-    box-sizing: border-box;
-    position: relative;
+    position: relative; /* Importante para o posicionamento do iframe */
+    overflow: hidden;
 }
 
-/* Isso força os elementos internos do hterm a preencherem a div */
-#terminal iframe {
+/* Força o conteúdo interno a se expandir */
+#terminal iframe, #terminal xterm {
     width: 100% !important;
     height: 100% !important;
-    position: absolute !important;
-    border: none !important;
+    border: none;
 }
         .dots span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 5px; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
@@ -80,36 +78,52 @@
 
     <!-- 3. Inicialização Forçada -->
     <script>
-        function startTerminal() {
-    var protocol = (window.location.protocol === 'https:') ? 'wss://' : 'ws://';
-    var url = protocol + window.location.host + window.location.pathname + 'ws';
-    var elem = document.getElementById('terminal');
-    
-    try {
-        // Passamos um objeto de opções como terceiro parâmetro
-        var gotty = new Gotty(elem, url, {
-            fontSize: 25,          // Diminua aqui se ainda estiver grande (ex: 12)
-            fontFamily: "monospace",
-            enableKeyboard: true
-        });
-        gotty.open();
+    function startTerminal() {
+        var protocol = (window.location.protocol === 'https:') ? 'wss://' : 'ws://';
+        var url = protocol + window.location.host + window.location.pathname + 'ws';
+        var elem = document.getElementById('terminal');
         
-        // Força o redimensionamento após abrir
-        window.addEventListener('resize', function() {
-            // Se o objeto gotty tiver o método resize, chamamos ele
-            if (gotty.resize) {
-                gotty.resize();
-            }
-        });
-    } catch (e) {
-        console.error("Erro ao iniciar Gotty:", e);
-    }
-}
+        try {
+            var gotty = new Gotty(elem, url, {
+                fontSize: 16,
+                fontFamily: "Courier New, monospace",
+                enableKeyboard: true
+            });
+            
+            // --- A MÁGICA ACONTECE AQUI ---
+            gotty.onClose = function() {
+                // 1. Tenta fechar a aba (só funciona se o script abriu a aba)
+                window.close();
 
-        // Tenta iniciar após 200ms para garantir que os scripts externos foram lidos
-        window.addEventListener('load', function() {
-            setTimeout(startTerminal, 200);
-        });
-    </script>
+                // 2. Fallback: Se não fechar, limpa a interface e avisa o usuário
+                document.body.innerHTML = `
+                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; color:#bdc3c7; background:#2c3e50;">
+                        <h1 style="color:#1abc9c;">Sessão Encerrada</h1>
+                        <p>O sistema escolar em C foi finalizado com sucesso.</p>
+                        <button onclick="window.location.reload()" style="padding:10px 20px; background:#1abc9c; border:none; border-radius:5px; color:white; cursor:pointer;">Reiniciar Sistema</button>
+                    </div>
+                `;
+            };
+
+            gotty.open();
+
+            // Força o redimensionamento inicial
+            setTimeout(function() {
+                if (gotty.resize) gotty.resize();
+            }, 500);
+
+            window.addEventListener('resize', function() {
+                if (gotty.resize) gotty.resize();
+            });
+
+        } catch (e) {
+            console.error("Erro ao iniciar Gotty:", e);
+        }
+    }
+
+    window.addEventListener('load', function() {
+        setTimeout(startTerminal, 200);
+    });
+</script>
 </body>
 </html>

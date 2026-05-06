@@ -1,7 +1,7 @@
 services:
   sistema-escola:
     build: .
-    container_name: sistema_residencia
+    container_name: sistema_escola
     volumes:
       - ./database:/app/database
       - .:/app  # Sincroniza a pasta atual com a pasta /app do container
