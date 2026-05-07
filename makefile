@@ -50,7 +50,6 @@ clean:
 
 # Limpeza total (incluindo o banco de dados)
 cleanall: clean
-	@echo "Limpando banco de dados..."
-	rm -rf $(DB_DIR)
-	@echo "Banco de dados removido com sucesso!"
-.PHONY: all clean cleanall
+	@echo "Limpando o conteúdo do banco de dados..."
+	rm -f $(DB_DIR)/*
+	@echo "Banco de dados removidos com sucesso!"

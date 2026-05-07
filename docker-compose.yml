@@ -1,12 +1,11 @@
-version: '3.8'
-
 services:
   sistema-escola:
     build: .
-    container_name: sistema_residência
-    # O volume garante que o arquivo escola.db fique salvo na sua máquina real
+    container_name: sistema_escola
     volumes:
       - ./database:/app/database
-    # Permite a interação com o menu (scanf)
+      - .:/app  # Sincroniza a pasta atual com a pasta /app do container
+    ports:
+      - "8080:8080"  # Porta externa : Porta interna do Gotty
     stdin_open: true
     tty: true
