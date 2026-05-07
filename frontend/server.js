@@ -22,6 +22,16 @@ io.on('connection', (socket) => {
     env: process.env
 });
 
+term.onExit(({ exitCode }) => {
+    console.log("Programa em C fechou. Avisando frontend...");
+    io.emit('server-closed'); // Envia o sinal para o HTML
+    
+    setTimeout(() => {
+        console.log("Encerrando container...");
+        process.exit(0); 
+    }, 200); // Aguarda o envio da mensagem antes de matar o processo
+});
+
     // Envia a saída do C para o Navegador
     term.onData((data) => socket.emit('output', data));
 
