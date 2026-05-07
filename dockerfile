@@ -9,18 +9,18 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copia os arquivos de dependência primeiro para garantir que o node_modules seja criado
+# Copia o código primeiro
 COPY . .
 
-# Instala as dependências dentro da pasta frontend
+# Instala dependências do Node (isso demora, então deixamos no build)
 RUN cd frontend && ( [ -f package.json ] || npm init -y ) && npm install xterm socket.io node-pty express
 
-# Compila o C na raiz
-RUN chmod +x /app/sistema || true
-RUN make cleanall || true && make
+# Prepara a pasta do banco se não existir
+RUN mkdir -p database
 
 EXPOSE 8080
 
-# Forçamos o Node a iniciar EXATAMENTE onde o arquivo está
-# O comando 'ls' ajudará a gente a ver se o arquivo sumiu no log
-CMD ["sh", "-c", "ls -l frontend/server.js && cd frontend && node server.js"]
+# O PULO DO GATO:
+# Colocamos o 'make' aqui dentro do CMD. 
+# Assim, toda vez que o container ligar, ele compila o código C atualizado.
+CMD ["sh", "-c", "make cleanall && make && chmod +x ./sistema && cd frontend && node server.js"]
