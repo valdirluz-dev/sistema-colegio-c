@@ -1,26 +1,26 @@
 FROM debian:latest
 
 RUN apt-get update && apt-get install -y \
-    build-essential sqlite3 libsqlite3-dev wget ca-certificates \
+    build-essential sqlite3 libsqlite3-dev \
+    curl python3 make g++ \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalação do GoTTY
-RUN wget https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz && \
-    tar -xzf gotty_linux_amd64.tar.gz && \
-    mv gotty /usr/local/bin/ && chmod +x /usr/local/bin/gotty
-
 WORKDIR /app
+
+# Copia os arquivos de dependência primeiro para garantir que o node_modules seja criado
 COPY . .
 
-# Compila seu sistema em C
-RUN make && chmod +x ./sistema
+# Instala as dependências dentro da pasta frontend
+RUN cd frontend && ( [ -f package.json ] || npm init -y ) && npm install xterm socket.io node-pty express
 
-# Garante que o index.html está na raiz do WORKDIR
-# O GoTTY busca automaticamente por 'index.html' no diretório atual
+# Compila o C na raiz
+RUN chmod +x /app/sistema || true
+RUN make cleanall || true && make
+
 EXPOSE 8080
 
-# COMANDO DEFINITIVO:
-# -w: permite escrita (digitar)
-# -p: porta 8080
-# --index: aponta explicitamente para o seu arquivo
-CMD ["gotty", "-w", "-p", "8080", "--index", "index.html", "./sistema"]
+# Forçamos o Node a iniciar EXATAMENTE onde o arquivo está
+# O comando 'ls' ajudará a gente a ver se o arquivo sumiu no log
+CMD ["sh", "-c", "ls -l frontend/server.js && cd frontend && node server.js"]

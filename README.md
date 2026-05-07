@@ -60,8 +60,7 @@ Para compilar e rodar manualmente(Windows): `mkdir -p database && gcc -Wall -Wex
 <h3>Para desenvolvimento:</h3>
 
 `docker compose up -d` -> rodar o container
-docker exec -it sistema_escola bash
-`` -> abrir o terminal interno do container
+`docker exec -it sistema_escola bash` -> abrir o terminal interno do container
 
 <b>Dentro do terminal do container:</b>
 

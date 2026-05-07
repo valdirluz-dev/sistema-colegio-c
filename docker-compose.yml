@@ -3,9 +3,7 @@ services:
     build: .
     container_name: sistema_escola
     volumes:
-      - ./database:/app/database
-      - .:/app  # Sincroniza a pasta atual com a pasta /app do container
+      - .:/app
+      - /app/frontend/node_modules # Isso impede que seu PC apague os módulos do container
     ports:
-      - "8080:8080"  # Porta externa : Porta interna do Gotty
-    stdin_open: true
-    tty: true
+      - "8080:8080"
