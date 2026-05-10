@@ -111,6 +111,7 @@ O projeto foi refatorado para um padrão mais robusto de execução em terminal:
 ### 🐳 Para uso (Docker)
 
 ```bash
+chmod +x entrypoint.sh
 docker compose up
 ```
 
@@ -143,6 +144,7 @@ mkdir -p database && gcc -Wall -Wextra -g -Iinclude src\*.c -o sistema -lsqlite3
 ### 🛠️ Para desenvolvimento (Docker + Makefile)
 
 ```bash
+chmod +x entrypoint.sh
 docker compose up -d
 docker exec -it sistema_escola bash
 ```
