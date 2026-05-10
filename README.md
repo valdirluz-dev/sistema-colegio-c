@@ -5,8 +5,8 @@
 - 🧠 **C (GCC)** — lógica do sistema e interface de terminal (CLI)
 - 🗃️ **SQLite3** — persistência local (arquivo `escola.db`)
 - 🐳 **Docker + Docker Compose** — ambiente reprodutível e conteinerizado
-- 🌐 **Node.js (Express + Socket.io)** — servidor web e canal em tempo real
-- 🖥️ **Xterm.js** — terminal renderizado no navegador
+- 🌐 **Node.js (Express + Socket.io)** — Servidor web para o terminal
+- 🖥️ **Xterm.js** — Interface de terminal moderna via navegador.
 
 Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o objetivo de implementar um sistema de gerenciamento escolar em **C**, com persistência em **SQLite3** e interface em terminal.
 
@@ -50,11 +50,10 @@ O projeto foi refatorado para um padrão mais robusto de execução em terminal:
   - Evita loop infinito quando o usuário digita letras onde se espera números.
 - 🧾 **Tratamento de erros do SQLite3**:
   - Todas as operações relevantes verificam retorno (`rc != SQLITE_OK`) e exibem a mensagem específica (via `sqlite3_errmsg`/mensagem retornada).
-- 🔐 **Regras de negócio no banco (constraints)**:
-  - CPF é chave/valor único (PK/UNIQUE).
-  - `professores.materia` possui **UNIQUE**.
-  - `turmas.disciplina` possui **UNIQUE**.
-  - `turmas.cpf_professor` possui **FK** para `professores(cpf)`.
+- 🔐 **Regras de negócio:**:
+  - CPF como chave primária.
+  - Vínculos de integridade referencial (Foreign Keys) ativos via PRAGMA.
+  -Flexibilidade: Removida a restrição UNIQUE de matérias para permitir múltiplos docentes na mesma disciplina.
 - 🧠 **Feedback ao usuário**:
   - Operações de escrita (Create/Update/Delete) exibem mensagens claras de sucesso.
   - Listagens/buscas vazias retornam mensagem amigável: **“Nenhum registro encontrado.”**
@@ -112,14 +111,14 @@ O projeto foi refatorado para um padrão mais robusto de execução em terminal:
 ### 🐳 Para uso (Docker)
 
 ```bash
-docker compose up --build
+docker compose up
 ```
 
 #### 🔁 Build/execução automatizados no container
 
 O `CMD` do `dockerfile` foi configurado para **automatizar o ciclo completo** em um único comando ao iniciar o container:
 
-1. `make cleanall` → limpa binários/objetos e conteúdo do banco (ambiente previsível)
+1. `make clean` → limpa binários/objetos
 2. `make` → compila o código C (gerando `obj/*.o` e o executável `./sistema`)
 3. inicia o servidor web em `frontend/server.js` → expõe o terminal via navegador
 
@@ -154,13 +153,13 @@ Dentro do container:
 make          # compila (obj/*.o + binário)
 ./sistema     # executa o sistema
 make clean    # remove obj/ e executável
-make cleanall # remove obj/, executável e limpa database/
+make cleanall # retorna o comando para limpar o banco de dados
 ```
 
 📌 Observações:
 
 - `make clean` antes de subir o projeto (cada máquina recompila localmente).
-- Para usar os comandos bash fora do container (Linux): `sudo chown -R $USER:$USER .`
+- Para usar os comandos bash fora do container (Linux): `sudo chown -R $USER:$USER . && chmod -R 775 database/`
 
 ---
 
@@ -169,9 +168,9 @@ make cleanall # remove obj/, executável e limpa database/
 O Docker Compose usa volumes para manter o ambiente consistente:
 
 - 📦 **Código e banco persistem**: o bind mount `.:/app` garante que o diretório `database/` (incluindo `database/escola.db`) permaneça no host e **sobreviva a reinícios do container**.
+-`./database:/app/database`: O arquivo escola.db fica salvo na pasta local, permitindo backups e persistência total.
 - 🧩 **Dependências do Node isoladas**: o volume `/app/frontend/node_modules` mantém os módulos instalados **dentro do container**, evitando conflitos com `node_modules` do host e garantindo previsibilidade.
-
-> Nota: como o `CMD` executa `make cleanall` ao iniciar, o conteúdo do banco pode ser limpo automaticamente. Para persistência de dados “de produção”, recomenda-se ajustar esse comportamento (por exemplo, removendo o `cleanall` do start).
+- `/app/frontend/node_modules`: Volume anônimo para isolar as dependências do Node.js, otimizando a performance entre diferentes SOs.
 
 ## 🧠 Lógica de Dados (SQLite3)
 

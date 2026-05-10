@@ -13,6 +13,9 @@ void realizar_matricula() {
     sprintf(sql, "INSERT INTO matriculas (cpf_aluno, codigo_turma, nota, faltas) VALUES ('%s', '%s', 0.0, 0);", cpf, codigo_turma);
 
     db_exec_write(db, sql, "Aluno matriculado com sucesso!");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void lancar_nota() {
@@ -32,6 +35,9 @@ void lancar_nota() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 
@@ -51,6 +57,9 @@ void lancar_falta() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void ver_boletim() {
@@ -70,4 +79,7 @@ void ver_boletim() {
     printf("\n%-20s | %-6s | %-6s\n", "Disciplina", "Nota", "Faltas");
     printf("--------------------------------------------\n");
     db_exec_query(db, sql, callback_boletim, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }

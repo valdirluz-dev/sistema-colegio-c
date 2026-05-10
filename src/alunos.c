@@ -18,6 +18,9 @@ void cadastrar_aluno(){
 
     sprintf (sql,"INSERT INTO alunos (cpf,nome) VALUES ('%s','%s');", cpf, nome);
 
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
+
     db_exec_write(db, sql, "Aluno cadastrado com sucesso!");
 
 }
@@ -30,6 +33,8 @@ void listar_alunos(){
 
     db_exec_query(db, "SELECT * FROM alunos;", callback_alunos, 0, "Nenhum registro encontrado.");
 
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void buscar_cpf_aluno(){
@@ -42,6 +47,9 @@ void buscar_cpf_aluno(){
     sprintf(sql, "SELECT * FROM alunos WHERE cpf = '%s';", cpf);
 
     db_exec_query(db, sql, callback_alunos, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void buscar_nome_aluno(){
@@ -58,6 +66,9 @@ void buscar_nome_aluno(){
     sprintf(sql, "SELECT * FROM alunos WHERE nome LIKE '%%%s%%';", nome);
 
     db_exec_query(db, sql, callback_alunos, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 
 }
 
@@ -93,6 +104,9 @@ void editar_aluno() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void remover_aluno() {
@@ -123,6 +137,9 @@ void remover_aluno() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void listar_alunos_por_turma() {
@@ -143,4 +160,7 @@ void listar_alunos_por_turma() {
 
     db_exec_query(db, sql, callback_alunos, 0, "Nenhum registro encontrado.");
     printf("--------------------------------------------------\n");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }

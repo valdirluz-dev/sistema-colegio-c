@@ -23,4 +23,4 @@ EXPOSE 8080
 # O PULO DO GATO:
 # Colocamos o 'make' aqui dentro do CMD. 
 # Assim, toda vez que o container ligar, ele compila o código C atualizado.
-CMD ["sh", "-c", "make cleanall && make && chmod +x ./sistema && cd frontend && node server.js"]
+CMD ["sh", "-c", "make && chmod +x ./sistema && cd frontend && node server.js"]

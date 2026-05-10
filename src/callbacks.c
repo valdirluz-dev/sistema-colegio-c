@@ -48,10 +48,11 @@ int callback_turmas(void *data, int argc, char **argv, char **colName) {
     // Silencia avisos de parâmetros não usados
     (void)data; (void)argc; (void)colName;
     
-    printf("%-10s | %-25s | %-15s\n", 
-           argv[0] ? argv[0] : "---", 
-           argv[1] ? argv[1] : "---",
-           argv[2] ? argv[2] : "---");
+    printf("%-10s | %-25s | %-20s\n", 
+        argv[0] ? argv[0] : "---", 
+        argv[1] ? argv[1] : "---",
+        argv[2] ? argv[2] : "---");
+
     return 0;
 }
 

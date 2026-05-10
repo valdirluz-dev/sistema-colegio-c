@@ -37,10 +37,9 @@ $(DB_DIR):
 	mkdir -p $(DB_DIR)
 
 clean:
-	@echo "Limpando arquivos temporários..."
+	@echo "Limpando arquivos de build..."
 	-rm -rf $(OBJ_DIR) $(TARGET)
 
 cleanall: clean
-	@echo "Limpando o conteúdo do banco de dados..."
-	-rm -f $(DB_DIR)/*
-	@echo "Conteúdo do banco de dados removido!"
+	@echo "Aviso: O banco de dados em $(DB_DIR) foi mantido para segurança."
+	@echo "Para apagar o banco, use: rm -f $(DB_DIR)/*.db"

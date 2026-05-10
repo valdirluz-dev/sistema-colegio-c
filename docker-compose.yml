@@ -4,6 +4,7 @@ services:
     container_name: sistema_escola
     volumes:
       - .:/app
-      - /app/frontend/node_modules # Isso impede que seu PC apague os módulos do container
+      - /app/frontend/node_modules
+      - ./database:/app/database # Força a persistência específica da pasta do banco
     ports:
       - "8080:8080"

@@ -29,6 +29,9 @@ void cadastrar_professor(){
 
     db_exec_write(db, sql, "Professor cadastrado com sucesso!");
 
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
+
 }
 
 void listar_professores(){
@@ -38,6 +41,9 @@ void listar_professores(){
     printf("------------------------------------------------------------------\n");
 
     db_exec_query(db, "SELECT * FROM professores;", callback_professores, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void buscar_cpf_professores(){
@@ -46,11 +52,14 @@ void buscar_cpf_professores(){
     char sql[200];
 
     if (!read_cpf(cpf, sizeof(cpf), "Digite o CPF (11 dígitos ou 999.999.999-99): ")) return;
+    limpar_tela();
 
     sprintf(sql, "SELECT * FROM professores WHERE cpf = '%s';", cpf);
 
     db_exec_query(db, sql, callback_professores, 0, "Nenhum registro encontrado.");
     
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void buscar_nome_professores(){
@@ -64,10 +73,14 @@ void buscar_nome_professores(){
         return;
     }
 
+    limpar_tela();
+
     sprintf(sql, "SELECT * FROM professores WHERE nome LIKE '%%%s%%';", nome);
 
     db_exec_query(db, sql, callback_professores, 0, "Nenhum registro encontrado.");
-    
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void editar_professor() {
@@ -112,6 +125,10 @@ void editar_professor() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
+
 }
 
 void remover_professor() {
@@ -143,4 +160,7 @@ void remover_professor() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }

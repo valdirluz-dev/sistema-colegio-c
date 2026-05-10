@@ -1,9 +1,9 @@
 #include "imports.h"
 
-int opcao;
-
 //menu do controle de professores
 void menu_professores(){
+
+    int opcao;
 
     do{
     printf("==============================\n");
@@ -35,6 +35,7 @@ void menu_professores(){
         break;
     }
 
+    limpar_tela();
 
     }while (opcao!=0);
     
@@ -43,6 +44,8 @@ void menu_professores(){
 
 //menu do controle de turmas
 void menu_turmas(){
+
+    int opcao;
 
     do{
     printf("==============================\n");
@@ -73,8 +76,7 @@ void menu_turmas(){
         printf("================================");    
         break;
     }
-    
-    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+
     limpar_tela();
     
     }while (opcao!=0);
@@ -83,6 +85,8 @@ void menu_turmas(){
 
 //menu do controle de alunos
 void menu_alunos(){
+
+    int opcao;
 
     do{
     printf("==============================\n");
@@ -127,6 +131,8 @@ void menu_alunos(){
         printf("================================");    
         break;
     }
+
+    limpar_tela();
 
     }while (opcao!=0);
 

@@ -70,14 +70,14 @@ void db_init(){
         "CREATE TABLE IF NOT EXISTS professores ("
         "cpf TEXT UNIQUE PRIMARY KEY, "
         "nome TEXT, "
-        "materia TEXT UNIQUE"
+        "materia TEXT"
         ");");
 
     // Turmas com professor responsável + UNIQUE na disciplina (matéria/disciplinas)
     db_exec_sql(db,
         "CREATE TABLE IF NOT EXISTS turmas ("
         "codigo TEXT UNIQUE PRIMARY KEY, "
-        "disciplina TEXT UNIQUE, "
+        "disciplina TEXT, "
         "cpf_professor TEXT, "
         "FOREIGN KEY(cpf_professor) REFERENCES professores(cpf)"
         ");");
@@ -91,7 +91,7 @@ void db_init(){
         db_exec_sql(db,
             "CREATE TABLE turmas ("
             "codigo TEXT UNIQUE PRIMARY KEY, "
-            "disciplina TEXT UNIQUE, "
+            "disciplina TEXT, "
             "cpf_professor TEXT, "
             "FOREIGN KEY(cpf_professor) REFERENCES professores(cpf)"
             ");");

@@ -24,16 +24,26 @@ void cadastrar_turma(){
 
     db_exec_write(db, sql, "Turma cadastrada com sucesso!");
 
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
+
 }
 
 void listar_turmas(){
-
+    limpar_tela(); // Começa limpando para o título ficar no topo
     printf("\n--- Lista de Turmas ---\n");
-    printf("%-10s | %-25s | %-15s\n", "Codigo", "Disciplina", "CPF Professor");
-    printf("--------------------------------------------------------------\n");
+    printf("%-10s | %-25s | %-20s\n", "Codigo", "Disciplina", "Professor");
+    printf("----------------------------------------------------------------------\n");
 
-    db_exec_query(db, "SELECT * FROM turmas;", callback_turmas, 0, "Nenhum registro encontrado.");
+    // SQL com JOIN para buscar o nome do professor na tabela professores
+    const char *sql = "SELECT t.codigo, t.disciplina, p.nome "
+                      "FROM turmas t "
+                      "LEFT JOIN professores p ON t.cpf_professor = p.cpf;";
 
+    db_exec_query(db, sql, callback_turmas, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void listar_alunos_turma() {
@@ -76,6 +86,10 @@ void listar_alunos_turma() {
 
     db_exec_query(db, sql, callback_alunos, 0, "Nenhum registro encontrado.");
     printf("--------------------------------------------------\n");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
+
 }
 
 void listar_turmas_por_professor() {
@@ -90,6 +104,9 @@ void listar_turmas_por_professor() {
 
     sprintf(sql, "SELECT * FROM turmas WHERE cpf_professor = '%s';", cpf);
     db_exec_query(db, sql, callback_turmas, 0, "Nenhum registro encontrado.");
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void editar_turma() {
@@ -131,6 +148,9 @@ void editar_turma() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
 
 void remover_turma() {
@@ -162,4 +182,7 @@ void remover_turma() {
     if (rc == SQLITE_OK && sqlite3_changes(db) == 0) {
         printf("Nenhum registro encontrado.\n");
     }
+
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
+    limpar_tela();
 }
