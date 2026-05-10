@@ -14,9 +14,10 @@ void menu_professores(){
     printf("(2) - listar professores \n");
     printf("(3) - buscar professores por cpf \n");
     printf("(4) - buscar professores por nome \n");
+    printf("(5) - editar dados do professor \n");
+    printf("(6) - remover professor \n");
 
-    printf("DIGITE SUA OPCAO: ");
-    scanf("%d", &opcao);
+    if (!read_int(&opcao, "DIGITE SUA OPCAO: ", 0, 6)) return;
 
     switch (opcao){
     case 0: break;
@@ -24,6 +25,8 @@ void menu_professores(){
     case 2: listar_professores(); break;
     case 3: buscar_cpf_professores(); break;
     case 4: buscar_nome_professores(); break;
+    case 5: editar_professor(); break;
+    case 6: remover_professor(); break;
     
     default:
         printf("================================\n");
@@ -49,15 +52,20 @@ void menu_turmas(){
     printf("(1) - Cadastrar turma \n");
     printf("(2) - listar turmas \n");
     printf("(3) - listar alunos da turma\n");
+    printf("(4) - listar turmas por professor\n");
+    printf("(5) - editar dados da turma\n");
+    printf("(6) - remover turma\n");
 
-    printf("DIGITE SUA OPCAO: ");
-    scanf("%d", &opcao);
+    if (!read_int(&opcao, "DIGITE SUA OPCAO: ", 0, 6)) return;
 
     switch (opcao){
     case 0: break;
     case 1: cadastrar_turma(); break;
     case 2: listar_turmas(); break;
     case 3: listar_alunos_turma(); break;
+    case 4: listar_turmas_por_professor(); break;
+    case 5: editar_turma(); break;
+    case 6: remover_turma(); break;
     
     default:
         printf("================================");
@@ -66,9 +74,7 @@ void menu_turmas(){
         break;
     }
     
-    printf("\nPressione ENTER para continuar...");
-    getchar();
-    getchar();
+    (void)read_line((char[4]){0}, 4, "\nPressione ENTER para continuar...");
     limpar_tela();
     
     }while (opcao!=0);
@@ -87,14 +93,16 @@ void menu_alunos(){
     printf("(2) - listar alunos na escola \n");
     printf("(3) - buscar aluno por cpf\n");
     printf("(4) - buscar aluno por nome\n");
-    printf("(5) - realizar matrícula\n");
-    printf("(6) - lancar nota\n");
-    printf("(7) - lancar falta\n");
-    printf("(8) - ver boletim\n");
+    printf("(5) - listar alunos por turma\n");
+    printf("(6) - editar dados do aluno\n");
+    printf("(7) - remover aluno\n");
+    printf("(8) - realizar matrícula\n");
+    printf("(9) - lancar nota\n");
+    printf("(10) - lancar falta\n");
+    printf("(11) - ver boletim\n");
     
 
-    printf("DIGITE SUA OPCAO: ");
-    scanf("%d", &opcao);
+    if (!read_int(&opcao, "DIGITE SUA OPCAO: ", 0, 11)) return;
 
     switch (opcao){
     case 0: break;
@@ -102,10 +110,13 @@ void menu_alunos(){
     case 2: listar_alunos(); break;
     case 3: buscar_cpf_aluno(); break;
     case 4: buscar_nome_aluno(); break;
-    case 5: realizar_matricula(); break;
-    case 6: lancar_nota(); break;
-    case 7: lancar_falta(); break;
-    case 8: ver_boletim(); break;
+    case 5: listar_alunos_por_turma(); break;
+    case 6: editar_aluno(); break;
+    case 7: remover_aluno(); break;
+    case 8: realizar_matricula(); break;
+    case 9: lancar_nota(); break;
+    case 10: lancar_falta(); break;
+    case 11: ver_boletim(); break;
     
    
     

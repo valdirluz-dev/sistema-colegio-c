@@ -13,7 +13,7 @@ int callback_alunos(void *data, int argc, char **argv, char **colName);
 // Callback para Professores (CPF, Nome e Matéria)
 int callback_professores(void *data, int argc, char **argv, char **colName);
 
-// Callback para Turmas (Código e Disciplina)
+// Callback para Turmas (Código, Disciplina e CPF do Professor)
 int callback_turmas(void *data, int argc, char **argv, char **colName);
 
 // Callback para Disciplinas

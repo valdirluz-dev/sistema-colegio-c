@@ -44,8 +44,10 @@ int main(){
     printf("(2) - Gerenciar turmas \n");
     printf("(3) - Gerenciar alunos \n");
 
-    printf("DIGITE SUA OPCAO: ");
-    scanf("%d", &opcao);
+    if (!read_int(&opcao, "DIGITE SUA OPCAO: ", 0, 3)) {
+        printf("Entrada encerrada.\n");
+        break;
+    }
 
     limpar_tela();
 
