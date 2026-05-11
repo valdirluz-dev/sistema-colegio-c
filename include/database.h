@@ -7,6 +7,9 @@ int db_open();
 void db_close();
 void db_init();
 
+
+
+//ponteiro global para o banco de dados
 extern sqlite3 *db;
 
 #endif

@@ -1,46 +1,41 @@
 #include "imports.h"
 
-/* o comando a seguir serve para limpar a tela do console
-    após cada execução do menu.
-    
-    Pelo comando ser diferente nos sistemas operacionais o programa
-    verifica o sistema operacional antes de executar o comando 
-    que limpa a tela lá no terminal.
-
-    se for Windows: executa "cls" 
-    se for linux ou aple: executa "clean" 
-    se não for nenhum dos 3: não limpa a tela e manda uma mensagem
-
-    a partir de agora sempre que quisermos limpar 
-    o console chamaremos a função "limpartela()"
-    
-    */
-
-void limpar_tela(){
-    #if defined(_WIN32) || defined(_WIN64)
-        system("cls");
-    #elif defined(__linux__) || defined(__APPLE__)
-        system("clear");
-    #else
-        printf("Sistema não suportado\n");
-    #endif
-}
-
-//nosso programa começa de fato a partir dessa linha
-
 int main(){
 
-    limpar_tela();
+    /* --- CONFIGURAÇÃO DE FLUXO ---
+    Remove o "atraso" de escrita. Sem isso, o texto demoraria a aparecer no navegador.*/
+    setvbuf(stdout, NULL, _IONBF, 0); 
 
+    /* --- COMANDO ANSI ---
+     \033[2J limpa a tela | \033[H move o cursor para o início. 
+     É mais rápido e "limpo" que o system("clear") para terminais web.*/
+    printf("\033[2J\033[H");
+    printf("SISTEMA ONLINE\n");
+    fflush(stdout); // Força o envio do texto acima para o terminal imediatamente
+
+    /* --- ESCUTAS DE SINAL ---
+    Caso o usuário encerre o programa abruptamente esses comandos fecham o banco de dados*/
+    signal(SIGINT, trata_sigint); // 
+    signal(SIGTERM, trata_sigint); //
+
+    // --- BANCO DE DADOS ---
     if (db_open() != SQLITE_OK){
-        return 1;
+        fprintf(stderr, "Erro ao abrir banco de dados\n");
+        return 1; //Fecha o programa com erro se o banco de dados não abrir
     }
 
-    db_init();
+    db_init(); // cria as tabelas no banco de dados
+    
+    // 3. MENSAGEM DE BOAS-VINDAS IMEDIATA
+    printf("Conectado ao servidor...\n");
+    sleep(1); // Pausa de 1s: dá tempo do navegador carregar o CSS antes do menu aparecer
 
     int opcao;
 
+    // --- LOOP DO MENU ---
     do{
+
+    limpar_tela();
     printf("============================== \n");
     printf("SISTEMA DE CONTROLE DE COLEGIO \n");
     printf("============================== \n");
@@ -49,8 +44,10 @@ int main(){
     printf("(2) - Gerenciar turmas \n");
     printf("(3) - Gerenciar alunos \n");
 
-    printf("DIGITE SUA OPCAO: ");
-    scanf("%d", &opcao);
+    if (!read_int(&opcao, "DIGITE SUA OPCAO: ", 0, 3)) {
+        printf("Entrada encerrada.\n");
+        break;
+    }
 
     limpar_tela();
 
@@ -66,7 +63,7 @@ int main(){
     }
 }while (opcao != 0);
 
-db_close();
+db_close(); //fecha o banco de dados quando o programa encerra
 
 printf("Sistema encerrado\n");
 return 0;

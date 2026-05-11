@@ -2,55 +2,44 @@
 # Makefile - Sistema Colégio C
 # ==========================================
 
-# Nome do executável final
 TARGET = sistema
-
-# Compilador e Flags
 CC = gcc
 CFLAGS = -Wall -Wextra -g -Iinclude
 LDFLAGS = -lsqlite3
 
-# Pastas
 SRC_DIR = src
 OBJ_DIR = obj
 DB_DIR = database
 
-# Localiza todos os arquivos .c dentro de /src
+# Localiza arquivos
 SRCS = $(wildcard $(SRC_DIR)/*.c)
-
-# Define os arquivos .o correspondentes dentro de /obj
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-# --- Regras Principais ---
+# Alvos que não são arquivos
+.PHONY: all clean cleanall
 
-# O 'all' agora garante que as pastas existam antes de compilar o target
 all: $(OBJ_DIR) $(DB_DIR) $(TARGET)
 
-# Linkagem do executável final
+# Linkagem - O TAB antes do $(CC) é obrigatório
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-# Compilação de cada arquivo .c para .o
+# Compilação - O TAB antes do $(CC) é obrigatório
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# --- Criação de Diretórios ---
-
+# Criação de Diretórios
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(DB_DIR):
 	mkdir -p $(DB_DIR)
 
-# --- Limpeza ---
-
 clean:
-	@echo "Limpando arquivos temporários..."
-	rm -rf $(OBJ_DIR) $(TARGET)
+	@echo "Limpando arquivos de build..."
+	-rm -rf $(OBJ_DIR) $(TARGET)
 
-# Limpeza total (incluindo o banco de dados)
 cleanall: clean
-	@echo "Limpando banco de dados..."
-	rm -rf $(DB_DIR)
-	@echo "Banco de dados removido com sucesso!"
-.PHONY: all clean cleanall
+	@echo "Aviso: O banco de dados em $(DB_DIR) foi mantido para segurança."
+	@echo "Para apagar o banco, use: rm -f $(DB_DIR)/*.db"

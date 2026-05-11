@@ -4,16 +4,18 @@
 //funcionalidades do programa
 #include <stdio.h>
 #include "database.h"
+#include "callbacks.h"
 #include "professores.h"
 #include "turmas.h"
 #include "alunos.h"
 #include "matriculas.h"
 #include "menu.h"
+#include "input.h"
+#include "sqlite_utils.h"
 
-//função de limpar a tela
+#include <string.h>
+#include <unistd.h> 
 #include <stdlib.h>
-void limpar_tela();
-//Callback
-int callback(void *data, int argc, char **argv, char **colName);
+#include <signal.h> 
 
 #endif
