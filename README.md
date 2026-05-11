@@ -207,3 +207,137 @@ id  cpf_aluno     codigo_turma   nota   faltas
 - Celina
 - Arthur
 
+# 🎓 Sistema de Gerenciamento de Colégio
+
+Projeto desenvolvido para a disciplina de **Residência Tecnológica**, com o objetivo de implementar um sistema de gerenciamento escolar utilizando a linguagem C.
+
+---
+
+## 📌 Funcionalidades
+
+- 📚 Cadastro de alunos
+- 📚 listar alunos
+- 📚 buscar alunos por cpf
+- 👨‍🏫 Cadastro de professores
+- 👨‍🏫 listar professores
+- 👨‍🏫 buscar professores por cpf
+- 🏫 Criação de turmas/disciplina  
+- 🏫 listagem de turmas/disciplinas  
+- 🏫 listagem de alunos matrículados numa turma/disciplina específica  
+- 📝 Matrícula de alunos em turmas  
+- 📊 Lançamento de notas  
+- 📅 Controle de faltas  
+- 📊 Geração de boletim com notas e faltas 
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```text
+📂 sistema-de-gerenciamento-de-colegio
+│
+├─ 📂 src            → arquivos .c (implementação)
+│   ├─ main.c        → Loop que chama o menu principal
+│   ├─ menu.c        → Lista opções e chama funções correspondentes
+|   └─ database.c    → Funções relacionadas ao banco de dados
+│   ├─ alunos.c      → Implementa cadastro e manipulação de alunos
+│   ├─ professores.c → Implementa cadastro e manipulação de professores
+│   ├─ turmas.c      → Criação de turmas e associação de professores
+│   └─ matriculas.c  → Matrícula de alunos, lançamento de notas e faltas
+│
+├─ 📂 include        → arquivos .h (declarações)
+│   ├─ alunos.h      → Declara funções de alunos
+│   ├─ professores.h → Declara funções de professores
+│   ├─ turmas.h      → Declara funções de turmas
+│   └─ matriculas.h  → Declara funções de matrículas
+│   └─ database.h  → Declara funções do database.c
+│
+├─ 📂 database    → arquivo com o banco de dados
+│   └─ escola.db  → contém as tabelas alunos, professores, turmas e matrículas.
+```
+---
+<h1> ⚙️ Compilação e execução do Sistema </h1>
+
+<h3> Para uso: </h3>
+
+Para compilar e executar o programa usando Docker: `docker-compose up --build` 
+
+Para compilar e rodar manualmente(linux/mac): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src/*.c -o sistema -lsqlite3 && ./sistema`
+
+Para compilar e rodar manualmente(Windows): `mkdir -p database && gcc -Wall -Wextra -g -Iinclude src\*.c -o sistema -lsqlite3 && .\sistema`
+
+<h3>Para desenvolvimento:</h3>
+
+`docker-compose up -d` -> rodar o container
+
+`docker exec -it sistema_residência bash` -> abrir o terminal interno do container
+
+<b>Dentro do terminal do container:</b>
+
+`make` -> Compila todos os arquivos
+
+`./sistema` -> Executa o sistema 
+
+`make clean` -> Limpa arquivos gerados pelo make (.o e executável)
+
+`make cleanall` -> limpa os arquivos e o banco de dados
+
+Obs: Sempre usar make clean antes de subir o projeto para o GitHub, pois cada computador deve compilar o executável localmente.
+
+---
+
+<h3>💡 Vantagens do Makefile</h3>
+
+- Compilação rápida → programa recompila apenas os arquivos alterados
+
+- Mantém a pasta raiz limpa → arquivos temporários vão para obj/
+
+<h1> Antes de usar make </h1>
+<img width="1301" height="659" alt="Captura de tela 2026-03-21 121351" src="https://github.com/user-attachments/assets/a7a1cbad-4a98-48be-8031-3ef1b8caa16b" />
+
+<h1> Após usar make </h1>
+<img width="1304" height="664" alt="Captura de tela 2026-03-21 121624" src="https://github.com/user-attachments/assets/209bf595-4d82-4bec-ab6d-39aa765c1ee7" />
+
+---
+
+<h1> 🧠 Funcionamento do Sistema </h1>
+
+O sistema utiliza o arquivo escola.db para armazenar os dados permanentemente em várias tabelas
+
+<b> Relação entre dados: </b>
+
+- Um aluno pode estar em várias turmas
+
+- Cada turma possui um professor
+
+- Matrícula liga aluno + turma
+
+- Notas e faltas são armazenadas na matrícula
+
+<b>🔗 Exemplo de Matrícula</b>
+
+```
+ID_Matricula  CPF_Aluno ID_Turma  Nota  Faltas
+2001          1001      1         8.5   2
+2002          1001      2         7.0   1
+```
+---
+<h1>👥 Equipe</h1>
+
+- Valdir
+
+- Henrique
+
+- Celina
+
+- Arthur
+
+---
+
+<h1>🚀 Observações</h1>
+
+Projeto desenvolvido para fins educacionais
+
+Código organizado por módulos para facilitar manutenção
+
+Uso de arquivos para persistência de dados
