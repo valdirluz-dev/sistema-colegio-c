@@ -162,6 +162,8 @@ make cleanall # retorna o comando para limpar o banco de dados
 
 - `make clean` antes de subir o projeto (cada máquina recompila localmente).
 - Para usar os comandos bash fora do container (Linux): `sudo chown -R $USER:$USER . && chmod -R 775 database/`
+- Caso o código não rode corretamente: `docker compose down && docker compose up -d --build`
+- Para verificar a execução do container: `docker logs -f sistema_escola`
 
 ---
 
