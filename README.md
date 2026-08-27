@@ -8,7 +8,7 @@ Sistema full-stack para gerenciamento escolar, desenvolvido em **C** com persist
   <img src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white" alt="Docker Compose">
   <img src="https://img.shields.io/badge/Node.js-Express%20%2B%20Socket.io-339933?logo=node.js&logoColor=white" alt="Node.js Express e Socket.io">
   <img src="https://img.shields.io/badge/Xterm.js-Terminal%20Web-000000?logo=gnometerminal&logoColor=white" alt="Xterm.js">
-  <img src="https://img.shields.io/badge/status-em%20desenvolvimento-F59E0B" alt="Status em desenvolvimento">
+ 
 </p>
 
 > Projeto educacional desenvolvido para a disciplina de **Residência Tecnológica**, com o objetivo de implementar um sistema de gerenciamento escolar em C, com persistência em SQLite3 e interface em terminal.
